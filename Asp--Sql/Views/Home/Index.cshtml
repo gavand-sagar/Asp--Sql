@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model Asp__Sql.Models.IndexViewModel
+
+
+<div>
+    <input id="seachInput" type="text" name="Name" />   
+</div>
+<div>
+    <button id="search">Search</button>
+</div>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Class Name</th>
+        </tr>
+    </thead>
+    <tbody id="listTableBody">
+        @foreach (var student in Model.Students)
+        {
+            <tr>
+                <td>@student.Name</td>
+                <td>@student.ClassName</td>
+            </tr>
+        }
+    </tbody>
+</table>
