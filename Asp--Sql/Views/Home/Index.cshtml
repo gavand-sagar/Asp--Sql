@@ -4,12 +4,36 @@
 @model Asp__Sql.Models.IndexViewModel
 
 
-<div>
-    <input id="seachInput" type="text" name="Name" />   
-</div>
-<div>
-    <button id="search">Search</button>
-</div>
+<partial name="UserInformation" model="Model.userInfro" />
+
+<form id="filterForm" asp-controller="Home" asp-action="Index">
+    <div>
+        <input type="text" name="Name" value="@Model.Name" onchange="SubmitForm()" />
+
+        <div>
+            <select name="ClassId" onchange="SubmitForm()">
+                <option value="0">Any</option>
+
+                @foreach (var item in Model.classes)
+                {
+                    @if (item.Id == Model.ClassId)
+                    {
+                        <option value="@item.Id" selected>@item.ClassName</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Id">@item.ClassName</option>
+                    }
+                }
+
+
+            </select>
+        </div>
+    </div>
+    <div>
+        <button type="submit">Search</button>
+    </div>
+</form>
 
 
 <table>

@@ -6,6 +6,7 @@ using System.Diagnostics;
 
 namespace Asp__Sql.Controllers
 {
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -14,38 +15,52 @@ namespace Asp__Sql.Controllers
         {
             _logger = logger;
         }
-
         public IActionResult Index(FormData formData)
         {
-
+            
+            
             string name = formData.Name;
+            int classid = formData.ClassId;
 
             LuciferContext context = new LuciferContext();
             List<GetStudentsResult>
                 studentsResults = context.Set<GetStudentsResult>()
-                                        .FromSqlRaw("EXECUTE dbo.GetStudentsWithClassNames '"+ name + "'")
+                                        .FromSqlRaw("EXECUTE dbo.GetStudentsWithClassNames '" + name + "'," + classid + " ")
                                         .ToList();
-            
+
+            List<Class> classes = context.Classes.ToList();
+
             IndexViewModel viewModel = new IndexViewModel();
+
+            viewModel.userInfro.Username = "Sagar";
+
             viewModel.Students = studentsResults;
 
+
+            viewModel.Name = name;
+            viewModel.ClassId = classid;
+            viewModel.classes = classes;
             return View("Index", viewModel);
         }
 
-        public IActionResult GetList(FormData formData)
-        {
+        //public IActionResult GetList(FormData formData)
+        //{
 
-            string name = formData.Name;
-            LuciferContext context = new LuciferContext();
-            List<GetStudentsResult>
-                studentsResults = context.Set<GetStudentsResult>()
-                                        .FromSqlRaw("EXECUTE dbo.GetStudentsWithClassNames '" + name + "'")
-                                        .ToList();
-            return Json(new { 
-                list = studentsResults
-            });
-           
-        }
+        //    string name = formData.Name;
+        //    LuciferContext context = new LuciferContext();
+        //    List<GetStudentsResult>
+        //        studentsResults = context.Set<GetStudentsResult>()
+        //                                .FromSqlRaw("EXECUTE dbo.GetStudentsWithClassNames '" + name + "'")
+        //                                .ToList();
+
+        //    IndexViewModel viewModel = new IndexViewModel();
+
+        //    viewModel.userInfro.Username = "Sagar";
+
+        //    viewModel.Students = studentsResults;
+
+        //    return View("Index", viewModel);
+        //}
 
         public IActionResult Privacy()
         {

@@ -6,6 +6,15 @@ namespace Asp__Sql.Models
     {
         public List<GetStudentsResult> Students = new List<GetStudentsResult>();
 
-        public string Heading{ get; set; }
+
+        public List<Class> classes = new List<Class>();
+
+        public UserInformationViewModel userInfro = new UserInformationViewModel();
+
+        public string Name { get; set; }
+
+        public int ClassId { get; set; }
+
+        public string Heading { get; set; }
     }
 }

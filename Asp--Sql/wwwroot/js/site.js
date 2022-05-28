@@ -4,33 +4,40 @@
 // Write your JavaScript code.
 
 
-$('#search').click(function () {
+//$('#search').click(function () {
 
-    $.ajax({
-        url: "/home/getlist",
-        data: {
-            Name: $('#seachInput').val()
-        },
-        success: function (response) {
-            $('#listTableBody').html('');
-
-
-            let array = response.list;
-
-            let bodyStirng = '';
-
-            for (var i = 0; i < array.length; i++) {
-                bodyStirng += '<tr><td>' + array[i].name + '</td><td>' + array[i].className +'</td></tr>'
-            }
-
-            $('#listTableBody').html(bodyStirng);
-
-            console.log(response)
-        }
-    })
+//    $.ajax({
+//        url: "/home/getlist",
+//        data: {
+//            Name: $('#seachInput').val()
+//        },
+//        success: function (response) {
+//            $('#listTableBody').html('');
 
 
+//            let array = response.list;
 
-})
+//            let bodyStirng = '';
+
+//            for (var i = 0; i < array.length; i++) {
+//                bodyStirng += '<tr><td>' + array[i].name + '</td><td>' + array[i].className +'</td></tr>'
+//            }
+
+//            $('#listTableBody').html(bodyStirng);
+
+//            console.log(response)
+//        }
+//    })
+
+
+
+//})
+
+
+$('#name').focus();
+
+function SubmitForm() {
+    $('#filterForm').submit();
+}
 
 
